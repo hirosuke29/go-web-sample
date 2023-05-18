@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  app:
+    build: 
+      context: .
+    container_name: app
+    ports:
+      - 80:80
+    command: ash -c "go run main.go"
+    volumes:
+      - .:/app
+
+  db:
+    image: postgres:15.1-alpine
+    container_name: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgresql/data:/var/lib/postgresql/data
+      - ./postgresql/config/postgresql.conf:/etc/postgresql/postgresql.conf 
+    env_file:
+      - .env
