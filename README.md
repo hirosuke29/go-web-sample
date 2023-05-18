@@ -4,5 +4,5 @@
 
 To run server,
 ```shell
-$ go run main.go
+$ docker compose up
 ```
